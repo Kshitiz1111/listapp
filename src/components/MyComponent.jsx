@@ -8,9 +8,6 @@ const MyComponent = ({ data }) => {
    const [searchTerm, setSearchTerm] = useState('');
    const inputRef = useRef(null);
 
-   console.log("selectedItems", selectedItems)
-   console.log("dataSource", dataSource)
-   console.log("searchTerm", searchTerm)
    useEffect(() => {
       setDataSource(data);
    }, [data]);
@@ -28,6 +25,7 @@ const MyComponent = ({ data }) => {
       return () => clearTimeout(timeoutId);
    }, [searchTerm, data]);
 
+
    const handleSelect = (item) => {
       setSelectedItems((currentSelectedItems) => {
          if (currentSelectedItems.includes(item)) {
@@ -37,6 +35,7 @@ const MyComponent = ({ data }) => {
          }
       });
    };
+
 
    const handleClear = () => {
       inputRef.current.value = '';
