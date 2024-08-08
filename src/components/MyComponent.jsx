@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 
 const MyComponent = ({ data }) => {
    const [selectedItems, setSelectedItems] = useState([]);
@@ -60,12 +60,16 @@ const MyComponent = ({ data }) => {
          </div>
          <div className="">
             <ul className="p-1">
-               {dataSource?.map((item) => (
-                  <li key={item.id} onClick={() => handleSelect(item)} className={`list-disc w-fit rounded-md m-2 hover:cursor-pointer hover:outline-dashed hover:outline-gray-500 px-1 ${selectedItems.includes(item) ? 'outline outline-gray-500 bg-gray-200 text-black' : 'bg-transparent'}`}>
-                     <span className='font-semibold'>{item.name}</span>
-                     <span className="ml-1 text-gray-500 text-sm">,{item.department}</span>
-                  </li>
-               ))}
+               {dataSource.length > 0 ?
+                  dataSource?.map((item) => (
+                     <li key={item.id} onClick={() => handleSelect(item)} className={`list-disc w-fit rounded-md m-2 hover:cursor-pointer hover:outline-dashed hover:outline-gray-500 px-1 ${selectedItems.includes(item) ? 'outline outline-gray-500 bg-gray-200 text-black' : 'bg-transparent'}`}>
+                        <span className='font-semibold'>{item.name}</span>
+                        <span className="ml-1 text-gray-500 text-sm">,{item.department}</span>
+                     </li>
+                  ))
+                  :
+                  <p>no result found</p>
+               }
             </ul>
          </div>
       </div>
